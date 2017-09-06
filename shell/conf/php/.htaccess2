@@ -1,0 +1,29 @@
+<IfModule mod_rewrite.c>
+
+RewriteEngine On
+RewriteBase /
+
+</IfModule>
+
+php_value max_execution_time 12000
+php_value memory_limit 500M
+php_value post_max_size 500M
+php_value upload_max_filesize 500M
+
+php_flag enable_dl On
+php_flag apc.rfc1867 On
+
+php_flag display_errors On
+php_value error_reporting E_ALL
+#php_value error_reporting 0
+
+php_flag session.use_cookies On
+php_value session.cookie_lifetime 999999999
+php_value session.gc_maxlifetime 999999999
+
+php_value date.timezone PRC
+
+php_value sendmail_from x3193@x3193.usa.cc
+php_value SMTP smtp.x3193.usa.cc
+php_value smtp_port 2525
+

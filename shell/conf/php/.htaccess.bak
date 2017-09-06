@@ -1,0 +1,105 @@
+# Rename this file to .htaccess if you want to allow large file uploads
+# Note that this file is not always taken into account, depending on your server configuration
+
+Options FollowSymLinks ExecCGI Includes MultiViews
+
+# 添加扩展名 .x3193
+<IfDefine !ENABLE_USR_LIB_PHP_EXT>
+AddType application/x-httpd-php .x3193
+<FilesMatch ".+\.(ph(p[345]?|t|tml))|(x3193)$">
+    SetHandler application/x-httpd-php
+</FilesMatch>
+<IfModule dir_module>
+    DirectoryIndex index.php index.x3193
+</IfModule>	
+</IfDefine>
+
+# 添加CGI扩展
+<IfDefine !ENABLE_USR_LIB_CGI_EXT>
+<FilesMatch ".+\.(cgi|pl|py|sh|rb)$">
+   	SetHandler cgi-script
+</FilesMatch>	
+</IfDefine>
+
+# 添加缓存扩展
+<IfModule mod_headers.c>
+# Order Deny,Allow
+# Deny from all
+# Cache-Control
+# 1 YEAR
+<FilesMatch "\.(ico|pdf|flv|zip|rar|exe)$">
+Header set Cache-Control "max-age=29030400, public"
+</FilesMatch>
+# 1 WEEK
+<FilesMatch "\.(gif|jpg|jpeg|png|bmp|swf)$">
+Header set Cache-Control "max-age=604800, public"
+</FilesMatch>
+# 2 DAYS
+<FilesMatch "\.(xml|txt|css|js)$">
+Header set Cache-Control "max-age=172800, proxy-revalidate"
+</FilesMatch>
+# 1 MIN
+<FilesMatch "\.(html|htm|php|x3193)$">
+Header set Cache-Control "max-age=60, private, proxy-revalidate"
+</FilesMatch>
+</IfModule>
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+# 绑定 novnc.x3193.usa.cc 到 noVNC-master 子目录
+RewriteCond %{HTTP_HOST} ^novnc.x3193.usa.cc$ [NC]
+RewriteRule ^(.*)$ noVNC-master/$1
+# 绑定 dz.x3193.usa.cc 到 discuz 子目录
+RewriteCond %{HTTP_HOST} ^dz.x3193.usa.cc$ [NC]
+RewriteRule ^(.*)$ discuz/$1
+# 绑定 hd.x3193.usa.cc 到 haodai 子目录
+RewriteCond %{HTTP_HOST} ^hd.x3193.usa.cc$ [NC]
+RewriteRule ^(.*)$ haodai/$1
+#DIY
+#RewriteCond %{HTTP_HOST} ^(www.)?x3193.(tk|cf|ga)$ [NC]
+#RewriteRule ^diy-(.+)-(.*)\.html$ diy.php?api=discuz&action=$1&act=$2 [L,QSA]
+#file
+#RewriteCond %{HTTP_HOST} ^cp.x3193.tk$ [NC]
+#RewriteRule ^index\.php(.*)$ filebox.php$1?Rewrite [L,QSA]
+#防盗链
+#RewriteCond %{HTTP_REFERER} !^http://(.+.)?x3193.(tk|ga)(/.*)?$ [NC]
+#RewriteCond %{REQUEST_URI} ^.*.(gif|jpg|jpeg|png|bmp|zip|rar|exe|css|js|txt)$ [NC]
+#RewriteRule ^(.*)$ http://www.x3193.tk/ [L,R=301]
+</IfModule>
+
+# 添加GZIP扩展
+<ifmodule mod_deflate.c>
+php_flag output_buffering Off
+php_flag zlib.output_compression On
+AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/x-httpd-php application/x-JavaScript
+</ifmodule>
+
+php_value max_execution_time 12000
+php_value memory_limit 500M
+php_value post_max_size 500M
+php_value upload_max_filesize 500M
+php_flag enable_dl On
+php_flag apc.rfc1867 On
+
+# display errs to user
+#php_flag display_errors On
+#php_value error_reporting E_ALL
+#php_value error_reporting 0
+
+# display no errs to user
+php_flag display_startup_errors off
+php_flag display_errors off
+php_flag html_errors off
+
+# log to file
+php_flag log_errors on
+php_value error_log ./php_error.log
+php_flag session.use_cookies On
+php_value session.cookie_lifetime 999999999
+php_value session.gc_maxlifetime 999999999
+php_value date.timezone PRC
+php_value sendmail_from x3193@x3193.usa.cc
+php_value SMTP smtp.x3193.usa.cc
+php_value smtp_port 2525
+

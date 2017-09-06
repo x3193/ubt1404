@@ -1,0 +1,5 @@
+FROM daocloud.io/x3193/ops:master-5303ce7
+
+ADD shell /var/www/html/shell
+
+RUN sudo sh /var/www/html/shell/setup/this/u7php.sh trusty; 

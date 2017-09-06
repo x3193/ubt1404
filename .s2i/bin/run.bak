@@ -1,0 +1,12 @@
+#!/bin/bash -e
+
+ls -l /
+id -un
+echo "run"
+uname -r
+ 
+/run.sh full opsv3
+
+exec /usr/sbin/sshd -D
+
+exit 0

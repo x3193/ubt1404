@@ -1,0 +1,7 @@
+FROM daocloud.io/x3193/cd-opsv3:master-94c32eb
+
+RUN sh /var/www/html/shell/cloud/opsv3/opsv3.sh full 1043830000 trusty x3193;
+
+USER 1043830000
+
+#CMD /run.sh full opsv3

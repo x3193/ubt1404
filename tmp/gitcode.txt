@@ -1,0 +1,47 @@
+echo "--------------------"
+
+#git clone  https://github.com/x3193/ubt1404
+git clone https://git.coding.net/x3193/ubt1404.git
+
+echo "--------------------"
+
+git init
+git add .
+git commit -m 'ubt1404'
+git remote rm origin
+#git remote add origin https://github.com/x3193/ubt1404.git
+git remote add origin https://git.coding.net/x3193/ubt1404.git
+#git pull origin master
+git push -f origin master
+
+echo "--------------------"
+
+git init
+git commit -m 'ubt1404'
+git remote rm origin
+#git remote add origin https://github.com/x3193/ubt1404.git
+git remote add origin https://git.coding.net/x3193/ubt1404.git
+#git pull origin master
+git rm -rf *
+git push -f origin master
+
+echo "--------------------"
+
+git init
+git tag v1.0
+git commit -m 'ubt1404'
+git remote rm origin
+git remote add origin https://github.com/x3193/ubt1404.git
+#git pull origin master
+git push -f origin --tags
+
+echo "--------------------"
+
+git init
+git commit -m 'ubt1404'
+git remote rm origin
+git remote add origin https://github.com/x3193/ubt1404.git
+#git pull origin master
+git push origin --delete tag v1.0
+
+echo "--------------------"

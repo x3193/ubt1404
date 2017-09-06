@@ -1,0 +1,30 @@
+#!/bin/sh
+
+unset SESSION_MANAGER
+unset DBUS_SESSION_BUS_ADDRESS
+
+xrdb $HOME/.Xresources
+xsetroot -solid grey
+#x-terminal-emulator -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &
+#x-window-manager &
+# Fix to make GNOME work
+export XKL_XMODMAP_DISABLE=1
+
+echo "===cronen-start==="
+if [ -z `pgrep -f 'python /var/www/html/cronen-master/cron.py'` ] && [ `id -ur` != '0' ] ; then
+ setsid python /var/www/html/cronen-master/cron.py &
+ sleep 5s
+ curl http://localhost:12345/run/cron_daily 
+ curl http://localhost:12345/run/cron_hourly
+fi
+echo "===cronen-end==="
+
+/etc/X11/Xsession &
+#startxfce4 &
+#icewm-session &
+
+setsid autocutsel &
+setsid node /usr/local/lib/node_modules/tty.js/tty.js &  
+#scim &
+#xterm &
+#lxsession &

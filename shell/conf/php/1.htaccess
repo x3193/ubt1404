@@ -1,0 +1,93 @@
+
+# Rename this file to .htaccess if you want to allow large file uploads
+# Note that this file is not always taken into account, depending on your server configuration
+
+<IfModule mod_rewrite.c>
+
+RewriteEngine On
+RewriteBase /
+
+# 绑定wp.x3193.tk 到 wordpress 子目录
+RewriteCond %{HTTP_HOST} ^wp.x3193.tk$ [NC]
+RewriteRule ^(.*)$ wordpress/$1 [L,QSA]
+
+# 绑定m.wp.x3193.tk 到 wordpress/wap 子目录
+RewriteCond %{HTTP_HOST} ^m.wp.x3193.tk$ [NC]
+RewriteRule ^(.*)$ wordpress/wap/$1 [L,QSA]
+
+# 绑定 pn.x3193.tk 到 phono 子目录
+RewriteCond %{HTTP_HOST} ^pn.x3193.tk$ [NC]
+RewriteRule ^(.*)$ phono/$1 [L,QSA]
+
+# 绑定 hd.x3193.tk 到 haodai 子目录
+RewriteCond %{HTTP_HOST} ^hd.x3193.tk$ [NC]
+RewriteRule ^(.*)$ haodai/$1 [L,QSA]
+
+# 绑定 n2f.x3193.tk 到 net2ftp 子目录
+RewriteCond %{HTTP_HOST} ^n2f.x3193.tk$ [NC]
+RewriteRule ^(.*)$ net2ftp/$1 [L,QSA]
+
+# 绑定pd.x3193.tk 到 phpdisk 子目录
+RewriteCond %{HTTP_HOST} ^pd.x3193.tk$ [NC]
+RewriteRule ^(.*)$ phpdisk/$1 [L,QSA]
+
+# 绑定vnc.x3193.tk 到 noVNC-master 子目录
+RewriteCond %{HTTP_HOST} ^vnc.x3193.tk$ [NC]
+RewriteRule ^(.*)$ noVNC-master/$1 [L,QSA]
+
+#DIY
+RewriteCond %{HTTP_HOST} ^(www.)?x3193.(tk|cf|ga)$ [NC]
+RewriteRule ^diy-(.+)-(.*)\.html$ diy.php?api=discuz&action=$1&act=$2 [L,QSA]
+
+#file
+RewriteCond %{HTTP_HOST} ^cp.x3193.tk$ [NC]
+RewriteRule ^index\.php(.*)$ filebox.php$1?Rewrite [L,QSA]
+
+#防盗链
+RewriteCond %{HTTP_REFERER} !^http://(.+.)?x3193.(tk|ga)(/.*)?$ [NC]
+RewriteCond %{REQUEST_URI} ^.*.(gif|jpg|jpeg|png|bmp|zip|rar|exe|css|js|txt)$ [NC]
+RewriteRule ^(.*)$ http://www.x3193.tk/ [L,R=301]
+
+#DZ
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^topic-(.+)\.html$ portal.php?mod=topic&topic=$1&%1
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^article-([0-9]+)-([0-9]+)\.html$ portal.php?mod=view&aid=$1&page=$2&%1
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^forum-(\w+)-([0-9]+)\.html$ forum.php?mod=forumdisplay&fid=$1&page=$2&%1
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^thread-([0-9]+)-([0-9]+)-([0-9]+)\.html$ forum.php?mod=viewthread&tid=$1&extra=page\%3D$3&page=$2&%1
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^group-([0-9]+)-([0-9]+)\.html$ forum.php?mod=group&fid=$1&page=$2&%1
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^space-(username|uid)-(.+)\.html$ home.php?mod=space&$1=$2&%1
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^blog-([0-9]+)-([0-9]+)\.html$ home.php?mod=space&uid=$1&do=blog&id=$2&%1
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^archiver/(fid|tid)-([0-9]+)\.html$ archiver/index.php?action=$1&value=$2&%1
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^([a-z]+[a-z0-9_]*)-([a-z0-9_\-]+)\.html$ plugin.php?id=$1:$2&%1
+
+
+</IfModule>
+
+
+php_value max_execution_time 12000
+php_value memory_limit 500M
+php_value post_max_size 500M
+php_value upload_max_filesize 500M
+
+php_flag Enable_dl On
+php_flag apc.rfc1867 On
+php_flag display_errors On
+#php_value error_reporting E_ALL
+
+
+php_flag session.use_cookies On
+php_value session.cookie_lifetime 999999999
+php_value session.gc_maxlifetime 999999999
+
+php_value sendmail_from postmaster@x3193.tk
+php_value SMTP smtp.x3193.tk
+
+php_value date.timezone PRC

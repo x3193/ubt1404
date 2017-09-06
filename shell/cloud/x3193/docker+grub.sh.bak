@@ -1,0 +1,25 @@
+#!/bin/bash
+
+echo "--------------------update------------------------"
+#rm -rf /var/lib/apt/lists/*;
+sudo dpkg --add-architecture i386
+sudo dpkg --configure -a;
+sudo dpkg-reconfigure -p high -f noninteractive debconf 
+sudo apt-get install -f;
+sudo apt-get dist-upgrade -y ;
+sudo apt-get update -y;
+sudo apt-get upgrade -y ;
+echo "---------------------docker----------------------"  
+#curl -sSL https://get.daocloud.io/docker | sh
+#curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://fc180fb3.m.daocloud.io
+#sudo /usr/local/bin/dockerd
+echo "--------------------------grub-------------------"  
+#sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --install-recommends linux-cloud-tools-`uname -r`-generic linux-headers-`uname -r`-generic linux-image-`uname -r`-generic linux-image-extra-`uname -r`-generic linux-signed-image-`uname -r`-generic linux-tools-`uname -r`-generic 
+#sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --install-recommends grub virtualbox
+#sudo update-grub
+#sudo /etc/init.d/virtualbox restart
+echo "------------------------Clean--------------------"  
+sudo apt-get autoremove -y  
+sudo apt-get clean -y  
+sudo apt-get autoclean -y  
+echo "-------------------------------------------------"  

@@ -1,0 +1,10 @@
+#!/bin/bash -e
+
+ls -l /
+id -un
+echo "run"
+uname -r
+ 
+/run.sh full opsv3
+
+exit 0

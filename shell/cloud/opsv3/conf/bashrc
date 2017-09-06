@@ -1,0 +1,21 @@
+# /etc/bashrc                                                                   
+                                                                                
+# System wide functions and aliases                                             
+# Environment stuff goes in /etc/profile                                        
+                                                                                
+# It's NOT a good idea to change this file unless you know what you             
+# are doing. It's much better to create a custom.sh shell script in             
+# /etc/profile.d/ to make custom changes to your environment, as this           
+# will prevent the need for merging in future updates.                          
+                                                                                
+# are we an interactive shell?                                                  
+if [ "$PS1" ]; then                                                             
+  if [ -z "$PROMPT_COMMAND" ]; then                                             
+    case $TERM in                                                               
+    xterm*|vte*)                                                                
+      if [ -e /etc/sysconfig/bash-prompt-xterm ]; then                          
+          PROMPT_COMMAND=/etc/sysconfig/bash-prompt-xterm                       
+      elif [ "${VTE_VERSION:-0}" -ge 3405 ]; then                               
+          PROMPT_COMMAND="__vte_prompt_command"                                 
+      else                                                                      
+          PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*

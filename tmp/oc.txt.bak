@@ -1,0 +1,141 @@
+W0823 21:54:08.309345       1 builder.go:55] Master version "v3.2.1.13-5-gddf7d17" does not match Builder image version "v3.2.1.13-1-gc2a90e1"
+I0823 21:54:08.315267       1 builder.go:145] Running build with cgroup limits: api.CGroupLimits{MemoryLimitBytes:536870912, CPUShares:61, CPUPeriod:100000, CPUQuota:100000, MemorySwap:536870912}
+I0823 21:54:08.322372       1 sti.go:206] The value of ALLOWED_UIDS is [1-]
+I0823 21:54:08.322404       1 sti.go:214] The value of DROP_CAPS is [KILL,MKNOD,SETGID,SETUID,SYS_CHROOT]
+I0823 21:54:08.330011       1 docker.go:355] Using locally available image "registry.access.redhat.com/rhscl/php-56-rhel7:latest"
+I0823 21:54:08.332948       1 sti.go:233] Creating a new S2I builder with build config: "Builder Name:\t\t\tApache 2.4 with PHP 5.6\nBuilder Image:\t\t\tregistry.access.redhat.com/rhscl/php-56-rhel7:latest\nSource:\t\t\t\tfile:///tmp/s2i-build586920281/upload/src#master\nOutput Image Tag:\t\tx3193/test-1:4618e9ec\nEnvironment:\t\t\tOPENSHIFT_BUILD_NAME=test-1,OPENSHIFT_BUILD_NAMESPACE=x3193,OPENSHIFT_BUILD_SOURCE=https://github.com/openshift/cakephp-ex.git,OPENSHIFT_BUILD_REFERENCE=master\nIncremental Build:\t\tdisabled\nRemove Old Build:\t\tdisabled\nBuilder Pull Policy:\t\tif-not-present\nPrevious Image Pull Policy:\talways\nQuiet:\t\t\t\tdisabled\nLayered Build:\t\t\tdisabled\nWorkdir:\t\t\t/tmp/s2i-build586920281\nDocker NetworkMode:\t\tcontainer:7f3985ad5d00157ca6266a8844d33e178a29dfaa75fbc7065100202d419f600a\nDocker Endpoint:\t\tunix:///var/run/docker.sock\n"
+I0823 21:54:08.336064       1 docker.go:355] Using locally available image "registry.access.redhat.com/rhscl/php-56-rhel7:latest"
+I0823 21:54:08.345226       1 docker.go:355] Using locally available image "registry.access.redhat.com/rhscl/php-56-rhel7:latest"
+I0823 21:54:08.345252       1 docker.go:475] Image contains io.openshift.s2i.scripts-url set to 'image:///usr/libexec/s2i'
+I0823 21:54:08.345300       1 sti.go:140] Preparing to build x3193/test-1:4618e9ec
+I0823 21:54:08.350064       1 source.go:197] Downloading "https://github.com/openshift/cakephp-ex.git" ...
+I0823 21:54:08.902039       1 source.go:208] Cloning source from https://github.com/openshift/cakephp-ex.git
+I0823 21:54:10.116883       1 install.go:251] Using "assemble" installed from "<source-dir>/.s2i/bin/assemble"
+I0823 21:54:10.116954       1 install.go:251] Using "run" installed from "image:///usr/libexec/s2i/run"
+I0823 21:54:10.116988       1 install.go:251] Using "save-artifacts" installed from "image:///usr/libexec/s2i/save-artifacts"
+I0823 21:54:10.117021       1 sti.go:152] Clean build will be performed
+I0823 21:54:10.117027       1 sti.go:155] Performing source build from file:///tmp/s2i-build586920281/upload/src#master
+I0823 21:54:10.117034       1 sti.go:166] Running "assemble" in "x3193/test-1:4618e9ec"
+I0823 21:54:10.117045       1 sti.go:441] Using image name registry.access.redhat.com/rhscl/php-56-rhel7:latest
+I0823 21:54:10.117065       1 sti.go:445] No user environment provided (no environment file found in application sources)
+I0823 21:54:10.117155       1 sti.go:547] starting the source uploading ...
+I0823 21:54:10.121052       1 docker.go:520] Both scripts and untarred source will be placed in '/tmp'
+I0823 21:54:10.121075       1 docker.go:599] Creating container with options {Name:"" Config:&{Hostname: Domainname: User: Memory:0 MemorySwap:0 MemoryReservation:0 KernelMemory:0 CPUShares:0 CPUSet: AttachStdin:false AttachStdout:true AttachStderr:false PortSpecs:[] ExposedPorts:map[] StopSignal: Tty:false OpenStdin:true StdinOnce:true Env:[OPENSHIFT_BUILD_NAME=test-1 OPENSHIFT_BUILD_NAMESPACE=x3193 OPENSHIFT_BUILD_SOURCE=https://github.com/openshift/cakephp-ex.git OPENSHIFT_BUILD_REFERENCE=master] Cmd:[/bin/sh -c tar -C /tmp -xf - && /tmp/scripts/assemble] DNS:[] Image:registry.access.redhat.com/rhscl/php-56-rhel7:latest Volumes:map[] VolumeDriver: VolumesFrom: WorkingDir: MacAddress: Entrypoint:[] NetworkDisabled:false SecurityOpts:[] OnBuild:[] Mounts:[] Labels:map[]} HostConfig:&{Binds:[] CapAdd:[] CapDrop:[KILL MKNOD SETGID SETUID SYS_CHROOT] GroupAdd:[] ContainerIDFile: LxcConf:[] Privileged:false PortBindings:map[] Links:[] PublishAllPorts:false DNS:[] DNSOptions:[] DNSSearch:[] ExtraHosts:[] VolumesFrom:[] NetworkMode:container:7f3985ad5d00157ca6266a8844d33e178a29dfaa75fbc7065100202d419f600a IpcMode: PidMode: UTSMode: RestartPolicy:{Name: MaximumRetryCount:0} Devices:[] LogConfig:{Type: Config:map[]} ReadonlyRootfs:false SecurityOpt:[] CgroupParent: Memory:536870912 MemorySwap:536870912 MemorySwappiness:0 OOMKillDisable:false CPUShares:61 CPUSet: CPUSetCPUs: CPUSetMEMs: CPUQuota:100000 CPUPeriod:100000 BlkioWeight:0 Ulimits:[] VolumeDriver: OomScoreAdj:0}} ...
+I0823 21:54:11.126970       1 docker.go:622] Attaching to container "549d8eda654f6c16d3e28bbf5539fa5dfbc853c37c35a00510b559227baadb0c" ...
+I0823 21:54:11.129215       1 docker.go:631] Starting container "549d8eda654f6c16d3e28bbf5539fa5dfbc853c37c35a00510b559227baadb0c" ...
+---> Installing application source...
+I0823 21:54:12.652983       1 docker.go:689] Invoking postExecution function
+E0823 21:54:12.652983       1 sti.go:571] Error reading docker stdout, EOF
+I0823 21:54:12.653035       1 sti.go:289] No user environment provided (no environment file found in application sources)
+I0823 21:54:12.666851       1 docker.go:734] Committing container with dockerOpts: {Container:549d8eda654f6c16d3e28bbf5539fa5dfbc853c37c35a00510b559227baadb0c Repository:x3193/test-1 Tag:4618e9ec Message: Author: Run:0xc2083fe1c0}, config: {Hostname: Domainname: User:1001 Memory:0 MemorySwap:0 MemoryReservation:0 KernelMemory:0 CPUShares:0 CPUSet: AttachStdin:false AttachStdout:false AttachStderr:false PortSpecs:[] ExposedPorts:map[] StopSignal: Tty:false OpenStdin:false StdinOnce:false Env:[OPENSHIFT_BUILD_NAME=test-1 OPENSHIFT_BUILD_NAMESPACE=x3193 OPENSHIFT_BUILD_SOURCE=https://github.com/openshift/cakephp-ex.git OPENSHIFT_BUILD_REFERENCE=master] Cmd:[/usr/libexec/s2i/run] DNS:[] Image: Volumes:map[] VolumeDriver: VolumesFrom: WorkingDir: MacAddress: Entrypoint:[] NetworkDisabled:false SecurityOpts:[] OnBuild:[] Mounts:[] Labels:map[io.openshift.build.commit.ref:master io.openshift.build.image:registry.access.redhat.com/rhscl/php-56-rhel7:latest io.openshift.build.commit.date:Mon Aug 22 14:44:49 2016 -0400 io.openshift.s2i.scripts-url:image:///usr/libexec/s2i build-date:2016-05-08T08:56:00.410916Z io.k8s.display-name:x3193/test-1:4618e9ec Version:5.6 Name:rhscl/php-56-rhel7 io.openshift.build.commit.id:701d706b7f2b50ee972d0bf76990042f6c0cda5c io.openshift.build.source-location:https://github.com/openshift/cakephp-ex.git io.openshift.build.commit.author:Ben Parees <bparees@users.noreply.github.com> vcs-ref:04d02e8b75e486c5add883a8dcfe12cefb9a91a1 io.s2i.scripts-url:image:///usr/libexec/s2i io.openshift.tags:builder,php,php56,rh-php56 Release:14.3 io.openshift.build.commit.message:Merge pull request #42 from bparees/recreate architecture:x86_64 io.k8s.description:Platform for building and running PHP 5.6 applications vcs-type:git io.openshift.expose-services:8080:http Vendor:Red Hat, Inc. distribution-scope:public Architecture:x86_64 Authoritative_Registry:registry.access.redhat.com BZComponent:rh-php56-docker Build_Host:rcm-img-docker02.build.eng.bos.redhat.com]}
+I0823 21:54:34.675894       1 sti.go:334] Successfully built x3193/test-1:4618e9ec
+I0823 21:54:34.711666       1 cleanup.go:23] Removing temporary directory /tmp/s2i-build586920281
+I0823 21:54:34.711692       1 fs.go:156] Removing directory '/tmp/s2i-build586920281'
+I0823 21:54:34.767635       1 sti.go:268] Using provided push secret for pushing 172.30.47.227:5000/x3193/test:latest image
+I0823 21:54:34.767659       1 sti.go:272] Pushing 172.30.47.227:5000/x3193/test:latest image ...
+I0823 21:56:26.708359       1 sti.go:288] Successfully pushed 172.30.47.227:5000/x3193/test:latest
+
+
+
+
+#https://api.preview.openshift.com/oauth/token/request
+oc get pods
+oc login https://api.preview.openshift.com
+oc secrets new-dockercfg docker-io-2 --docker-server='https://index.docker.io/v1/' --docker-username='x3193' --docker-password='EUIfgwe7' --docker-email='xcy6272003@126.com'
+oc secrets add serviceaccount/builder secret/docker-io-2
+oc import-image my-test15 --from=registry.preview.openshift.com/x3193/docker --confirm
+oc import-image my-test15 --from=daocloud.io/x3193/ops:master-80c6bb6 --confirm
+
+#oc import-image my-test6 --from=index.docker.io/x3193/dc:ubuntu-trusty-vnc-wine-php-2016 --confirm
+#oc import-image my-test6 --from=docker.io/x3193/dc:ubuntu-trusty-vnc-wine-php-2016 --confirm
+#oc import-image my-test11 --from=index.docker.io/x3193/ubt1404:latest --confirm
+
+----
+#docker login
+#docker pull index.docker.io/x3193/ubt1404
+====
+#https://api.preview.openshift.com/oauth/token/request
+oc login
+oc process --parameters -n x3193 ubt1404
+====
+#https://api.preview.openshift.com/oauth/token/request
+oc login
+docker login -u x3193 -e xcy6272003@126.com -p VGAbUdpcsc-YznhXR41YoU-mJgTiHCaHy4s9VsnXYJQ https://registry.preview.openshift.com 
+#docker login -u x3193 -e xcy6272003@126.com -p VGAbUdpcsc-YznhXR41YoU-mJgTiHCaHy4s9VsnXYJQ https://registry.access.redhat.com
+#docker tag index.docker.io/x3193/ubt1404 registry.access.redhat.com/x3193/docker
+docker tag index.docker.io/x3193/ubt1404 registry.preview.openshift.com/x3193/docker
+#docker push 172.30.47.227:5000/x3193/my-test13
+docker push registry.preview.openshift.com/x3193/docker
+#docker push registry.access.redhat.com/x3193/docker
+====
+oc login
+oc secrets new-dockercfg docker-io-2 --docker-server='https://registry.preview.openshift.com/' --docker-username='x3193' --docker-password='VGAbUdpcsc-YznhXR41YoU-mJgTiHCaHy4s9VsnXYJQ' --docker-email='xcy6272003@126.com'
+oc secrets add serviceaccount/builder secret/docker-io-2
+oc import-image my-test15 --from=registry.preview.openshift.com/x3193/docker --confirm
+====
+oc new-app x3193/docker~https://github.com/x3193/ubt1404  --name=ubt-app-2  --strategy=source
+oc create -f openshift/templates/ubt1404.json
+oc create -f openshift/templates/ubt1404.json -n x3193
+====
+====
+#docker login
+#docker pull index.docker.io/x3193/ubt1404
+#https://api.preview.openshift.com/oauth/token/request
+oc login --token=6InyUAvNbsZD5AYtXKk90POY_MLHUistd6N0iSLaIKo --server=https://api.preview.openshift.com
+docker login -u x3193 -e xcy6272003@126.com -p Rh_MoyosyD7DamLDmUaV5Txenk831Vfumyce96EZwOw https://registry.preview.openshift.com 
+docker tag index.docker.io/x3193/ubt1404 registry.preview.openshift.com/x3193/ubt1404
+docker push registry.preview.openshift.com/x3193/ubt1404
+#oc secrets new-dockercfg docker-io-ops --docker-server='https://index.docker.io/v1/' --docker-username='x3193' --docker-password='EUIfgwe7' --docker-email='xcy6272003@126.com'
+#oc secrets new-dockercfg daocloud-io-ops --docker-server='https://daocloud.io' --docker-username='x3193' --docker-password='EUIfgwe7' --docker-email='xcy6272003@126.com'
+oc secrets new-dockercfg docker-io-1 --docker-server='https://registry.preview.openshift.com/' --docker-username='x3193' --docker-password='qU_nEjDYUY_segjwXGFzveKpxeJSeNNLIQnJbubu2hs' --docker-email='xcy6272003@126.com'
+oc secrets add serviceaccount/default secret/docker-io-1  --for=pull,mount
+oc secrets add serviceaccount/builder secret/daocloud-io-ops
+
+oc import-image docker --from=172.30.47.227:5000/x3193/ubt1404 --confirm
+cd D:\TOOLS\TOOLS\wangzhuan\docker\repo\github\hub.docker.com\openshiftv3
+d:
+oc create -f openshift/templates/ubt1404.json
+
+oc import-image ubt1404:full --from=172.30.47.227:5000/x3193/ubt1404 --confirm
+oc import-image ubt1404:start --from=172.30.47.227:5000/x3193/ubt1404 --confirm
+oc import-image ubt1404:base --from=172.30.47.227:5000/x3193/ubt1404 --confirm
+
+sudo apt-get install apache2 mono-gmcs mono-utils monodoc-http libapache2-mod-mono mono-apache-server mono-apache-server2 mono-apache-server4 asp.net-examples
+
+
+sudo apt-get install apache2 libapache2-mod-mono mono-apache-server
+
+MonoAutoApplication disabled
+Alias /test "/usr/share/doc/xsp/test"
+
+Alias /test "/usr/share/doc/xsp/test"
+Alias /personal "/home/user/mypages"
+AddMonoApplications default "/:/var/www/html"
+<Location /test>
+    SetHandler mono
+</Location>
+<Location /personal>
+    SetHandler mono
+</Location>
+
+AddMonoApplications default "/:/var/www/html"
+<Location />
+    SetHandler mono
+</Location>
+
+
+if [ -z `pgrep -f 'python /var/www/html/cronen-master/cron.py'` ] ; then
+ cronenf='1'
+ setsid python /var/www/html/cronen-master/cron.py &
+  curl http://localhost:12345/run/cron_daily 
+  curl http://localhost:12345/run/cron_hourly
+ echo $cronenf
+fi
+
+sleep 7s
+
+if [ $cronenf = '1' ] ; then
+ cronenf='0'
+ curl http://localhost:12345/run/cron_daily 
+ curl http://localhost:12345/run/cron_hourly
+fi

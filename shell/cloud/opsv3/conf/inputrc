@@ -1,0 +1,72 @@
+# /etc/inputrc - global inputrc for libreadline                                 
+# See readline(3readline) and `info rluserman' for more information.            
+
+set meta-flag on 
+                                                                               
+# Be 8 bit clean.                                                               
+set input-meta on                                                               
+set output-meta on                                                              
+                                                                                
+# To allow the use of 8bit-characters like the german umlauts, uncomment        
+# the line below. However this makes the meta key not work as a meta key,       
+# which is annoying to those which don't need to type in 8-bit characters.      
+                                                                                
+set convert-meta off                                                          
+                                                                                
+# try to enable the application keypad when it is called.  Some systems         
+# need this to enable the arrow keys.                                           
+# set enable-keypad on                                                            
+                                                                                
+# see /usr/share/doc/bash/inputrc.arrows for other codes of arrow keys          
+                                                                                
+# do not bell on tab-completion                                                 
+# set bell-style none                                                           
+# set bell-style visible 
+
+# Completed names which are symbolic links to                                   
+# directories have a slash appended.                                            
+set mark-symlinked-directories on                                               
+                                                                        
+# some defaults / modifications for the emacs mode                              
+$if mode=emacs                                                                  
+                                                                                
+# allow the use of the Home/End keys                                            
+"^[[1~": beginning-of-line                                                      
+"^[[4~": end-of-line                                                            
+                                                                                
+# allow the use of the Delete/Insert keys                                       
+"^[[3~": delete-char                                                            
+"^[[2~": quoted-insert                                                          
+                                                                                
+# mappings for "page up" and "page down" to step to the beginning/end           
+# of the history                                                                
+# "^[[5~": beginning-of-history                                                 
+# "^[[6~": end-of-history                                                       
+                                                                                
+# alternate mappings for "page up" and "page down" to search the history        
+"^[[5~": history-search-backward                                                  
+"^[[6~": history-search-forward                                               
+                                                                               
+# mappings for Ctrl-left-arrow and Ctrl-right-arrow for word moving             
+"^[[1;5C": forward-word                                                         
+"^[[1;5D": backward-word                                                        
+"^[[5C": forward-word                                                           
+"^[[5D": backward-word                                                          
+"\e^[[C": forward-word                                                          
+"\e^[[D": backward-word                                                         
+                                                                                
+$if term=rxvt                                                                   
+"^[[8~": end-of-line                                                            
+"\eOc": forward-word                                                            
+"\eOd": backward-word                                                           
+$endif                                                                          
+                                                                                
+# for non RH/Debian xterm, can't hurt for RH/Debian xterm                       
+"\eOH": beginning-of-line                                                     
+"\eOF": end-of-line                                                           
+                                                                                
+# for freebsd console                                                           
+"^[[H": beginning-of-line   
+"^[[F": end-of-line                                                           
+                                                                                
+$endif                                 

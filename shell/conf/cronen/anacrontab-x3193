@@ -1,0 +1,15 @@
+# /etc/anacrontab: configuration file for anacron
+
+# See anacron(8) and anacrontab(5) for details.
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+HOME=/home/x3193
+LOGNAME=x3193
+MAILTO=x3193
+
+# These entries are useful for a PLD Linux system.
+1	5	cron.daily		find /var/www/html/shell/conf/cron/cron.daily/* -type f -name '*.sh' -exec sh {} \;
+7	10	cron.weekly		find /var/www/html/shell/conf/cron/cron.weekly/* -type f -name '*.sh' -exec sh {} \;
+30	15	cron.monthly		find /var/www/html/shell/conf/cron/cron.monthly/* -type f -name '*.sh' -exec sh {} \;
+#@monthly	15	cron.monthly	find /var/www/html/shell/conf/cron/cron.monthly/* -type f -name '*.sh' -exec sh {} \;

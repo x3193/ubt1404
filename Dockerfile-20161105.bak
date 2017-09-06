@@ -1,0 +1,13 @@
+\uFEFFFROM x3193/ubt1404:ubuntu-trusty-vnc-wine-php-2016
+
+ADD 20161115.sh /var/www/html/shell/setup/this/20161115.sh
+ADD vnc.sh /var/www/html/shell/loader/this/vnc.sh
+
+RUN chmod -R 7777 /var/www/html/shell/setup/this/20161115.sh
+RUN chmod -R 7777 /var/www/html/shell/loader/this/vnc.sh
+
+RUN sh /var/www/html/shell/setup/this/20161115.sh
+
+EXPOSE 22 80 6080 5901 5902 8080 2222 3377 4200 8022 8080
+
+CMD /run.sh full

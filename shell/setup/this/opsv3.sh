@@ -1,0 +1,104 @@
+#!/bin/bash
+
+echo "---------------------pre-install-----------------------"  
+export DISPLAY=':1' DEBIAN_FRONTEND='noninteractive' HOME='/root' USER='root' AUTHORIZED_KEYS='**None**' ROOT_PASS='EUIfgwe7' TERM='xterm' INPUTRC='/etc/inputrc' APACHE_RUN_USER='www-data' APACHE_RUN_GROUP='www-data' APACHE_PID_FILE='/var/run/apache2/apache2.pid' APACHE_RUN_DIR='/var/run/apache2' APACHE_LOCK_DIR='/var/lock/apache2' APACHE_LOG_DIR='/var/log/apache2' TZ='Asia/Shanghai'; export TZ;dpkg --configure -a && apt-get install -f && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install expect sudo net-tools openssh-server pwgen zip unzip python-numpy python3-numpy cron curl git gparted; mkdir -p /var/run/sshd && sed -i "s/UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config && sed -i "s/UsePAM.*/UsePAM no/g" /etc/ssh/sshd_config && sed -i "s/PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config; sudo DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends --force-yes -y sudo net-tools wget vim zip unzip python-numpy python3-numpy cron curl; 
+#sudo rm -rf /.root_pw_set
+sudo cp -R -f /var/www/html/shell/loader/run.sh /
+chmod -R 7777 /var/www/html/shell
+echo "-----------------------configure-----------------------"
+sudo dpkg --add-architecture i386
+sudo dpkg --configure -a
+sudo dpkg-reconfigure -p high -f noninteractive debconf 
+sudo chmod -R 7777 /var/www/html/shell/conf 
+#cat /proc/version
+#uname -a
+#lsb_release -a
+echo "---------------------souce.list-----------------------"  
+cd /var/www/html/shell/conf/source
+sudo cp -R -f /etc/apt/sources.list /etc/apt/sources.list.backup
+if [ $1 = "trusty" ] || [ -z "$1" ] ; then
+	sudo cp -R -f sources.list /etc/apt/sources.list
+fi
+if [ $1 = "xenial" ]; then
+	sudo cp -R -f sources.list.xenial /etc/apt/sources.list
+fi
+if [ $1 = "utopic" ]; then
+	sudo cp -R -f sources.list.utopic /etc/apt/sources.list
+fi
+
+#
+sudo apt-get update --force-yes  -y
+# add-apt-repository
+sudo DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends --force-yes -y python-software-properties software-properties-common
+sudo rm -rf -R /var/lib/apt/lists/*
+sudo dpkg --add-architecture i386
+sudo dpkg --configure -a
+sudo dpkg-reconfigure -p high -f noninteractive debconf 
+sudo apt-get install -f
+sudo apt-get update --force-yes  -y
+#sudo apt-get upgrade --force-yes  -y 
+#sudo apt-get dist-upgrade --force-yes  -y
+sudo apt-get autoremove -y  
+sudo apt-get clean -y  
+sudo apt-get autoclean -y 
+echo "---------------------zh-cn-----------------------"  
+cd /var/www/html/shell/conf 
+##sudo echo "export LC_ALL='zh_CN.UTF-8' LANG='zh_CN.UTF-8' LANGUAGE='zh_CN:zh:en_US:en'" >> ~/.profile
+sudo echo "export LC_ALL='zh_CN.UTF-8' LANG='zh_CN.UTF-8' LANGUAGE='zh_CN:zh:en_US:en'" >> /etc/profile
+sudo echo "TZ='Asia/Shanghai'; export TZ" >> ~/.profile
+sudo DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends --force-yes -y language-pack-zh-hant language-pack-zh-hans language-pack-zh-hans-base language-pack-zh-hant-base language-pack-gnome-zh-hant ttf-ubuntu-font-family fonts-wqy-microhei
+sudo mkdir -vp /usr/share/fonts/xpfonts
+cd /var/www/html/shell/conf 
+sudo cp -R -f /ttf/*.ttf /usr/share/fonts/xpfonts
+sudo mkfontscale
+sudo mkfontdir
+sudo fc-cache -fv
+echo "---------------------------SSH-----------------"  
+cd /var/www/html/shell/conf 
+sudo rm -rf ~/.ssh
+mkdir -vp ~/.ssh
+#ssh-keygen -t rsa -f ~/.ssh/id_rsa -N ""
+ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -N ""
+cd /var/www/html/shell/conf/.ssh 
+sudo cp -R -f known_hosts id_rsa.pub id_rsa authorized_keys default.ppk ~/.ssh 
+sudo chmod -R 0600 ~/.ssh 
+sudo chmod 0700 ~ 
+sudo chmod 0700 ~/.ssh 
+sudo chmod 0644 ~/.ssh/authorized_keys 
+sudo mkdir -vp ~/ssh
+sudo cp -R -f ~/.ssh/* ~/ssh
+cd /var/www/html/shell/conf/ssh 
+sudo cp -R -f ssh /etc/init.d 
+echo "================================================="
+echo "root:euifgwe7" | chpasswd
+#sudo service ssh start 
+echo "================================================="
+echo "---------------------------php-----------------"  
+#
+sudo DEBIAN_FRONTEND=noninteractive apt-get install --force-yes -y zip unzip git wget vim supervisor git apache2 libapache2-mod-php5 mysql-server-5.6 mysql-client-core-5.6 mysql-client-5.6 mysql-client-core-5.6 mysql-client-core-5.6 php5-mysql pwgen php-apc php5-mcrypt php5-gd php5-curl php5-dev phpmyadmin
+#
+sudo service apache2 restart  
+sudo service mysql restart  
+sudo cp -f -R /etc/php5/apache2/php.ini /etc/php5/apache2/php.ini.backup
+sudo rm -rf /etc/php5/apache2/php.ini
+#sudo cp -f -R /var/www/html/shell/conf/php/php.ini /etc/php5/apache2
+sudo ln -sf /var/www/html/shell/conf/php/php.ini /etc/php5/apache2
+#sed -i "s/;opcache.enable=.*/opcache.enable=1/g" /etc/php5/apache2/php.ini
+sudo php5enmod opcache ;
+sudo php5enmod mcrypt ;
+sudo a2enmod headers expires
+echo "ServerName localhost" >> /etc/apache2/apache2.conf 
+chmod -R 7777 /var/www/html 
+sudo a2enmod rewrite
+sudo /etc/init.d/apache2 restart 
+
+sudo a2enmod php5
+sudo service apache2 restart;
+sudo service mysql restart;
+#
+df -h
+echo "------------------------Clean--------------------"  
+sudo apt-get autoremove -y  
+sudo apt-get clean -y  
+sudo apt-get autoclean -y  
+echo "--------------------------------------------"  
