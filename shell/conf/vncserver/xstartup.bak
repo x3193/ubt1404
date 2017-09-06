@@ -14,7 +14,7 @@ echo "===cronen-start==="
 if [ -z `pgrep -f 'python /var/www/html/cronen-master/cron.py'` ] && [ `id -ur` != '0' ] ; then
  setsid python /var/www/html/cronen-master/cron.py &
  sleep 5s
- curl http://localhost:12345/run/cron_daily 
+ curl http://localhost:12345/run/cron_daily
  curl http://localhost:12345/run/cron_hourly
 fi
 echo "===cronen-end==="
