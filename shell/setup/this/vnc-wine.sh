@@ -93,12 +93,12 @@ sudo cp -R -f *.desktop /root/Desktop/Proxychains
 sudo cp -R -f proxychains.conf /etc
 echo "--------------------VNC------------------------"  
 export LC_ALL='zh_CN.UTF-8' LANG='zh_CN.UTF-8' LANGUAGE='zh_CN:zh:en_US:en'
-#sudo DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends --force-yes -y novnc websockify openssl xorg ubuntu-gnome-desktop xfce4 icewm lxde tightvncserver x11vnc autocutsel git 
+#sudo DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends --force-yes -y novnc websockify openssl xorg ubuntu-gnome-desktop xfce4 icewm tightvncserver x11vnc autocutsel git 
 if [ $1 = "trusty" ] || [ -z "$1" ] ; then
-	sudo DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends --force-yes -y novnc websockify openssl xorg xfce4 icewm lxde tightvncserver x11vnc autocutsel git 
+	sudo DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends --force-yes -y novnc websockify openssl xorg xfce4 xfce4-terminal xfce4-taskmanager icewm tightvncserver x11vnc autocutsel git 
 fi
 if [ $1 = "xenial" ]; then
-	sudo DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends --force-yes -y novnc websockify openssl xorg icewm lxde tightvncserver x11vnc autocutsel git 
+	sudo DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends --force-yes -y novnc websockify openssl xorg icewm xfce4 xfce4-terminal xfce4-taskmanager tightvncserver x11vnc autocutsel git 
 fi
 ##openssl req -x509 -nodes -newkey rsa:2048 -keyout /root/novnc.pem -out /root/novnc.pem -days 36500
 cd /var/www/html/shell/conf/vncserver
@@ -158,7 +158,7 @@ fi
 echo "------------------------soft-------------------"  
 sudo DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends --force-yes -y firefox flashplugin-installer firefox-locale-zh-hant firefox-locale-zh-hans putty filezilla* dosbox putty visualboyadvance visualboyadvance-gtk libreoffice libreoffice-l10n-zh-cn pinta htop aptitude locate xchm fceux zsnes chromium-browser pepperflashplugin-nonfree
 echo "CHROMIUM_FLAGS='--user-data-dir'" >> /etc/chromium-browser/default
-sudo DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends --force-yes -y lxtask lxsession-edit lxappearance lxappearance-obconf uget
+sudo DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends --force-yes -y uget
 echo "------------------------rarlinux--------------------" 
 cd /var/www/html/shell/conf/
 sudo mkdir -vp /var/www/html/shell/conf/rarlinux
