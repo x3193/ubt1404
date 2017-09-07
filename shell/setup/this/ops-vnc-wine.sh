@@ -128,6 +128,7 @@ DISPLAY=:1 PASS=${ROOT_PASS:-$(pwgen -s 12 1)}
 DISPLAY=:1 echo "x3193:$PASS" | chpasswd
 DISPLAY=:1 echo "www-data:$PASS" | chpasswd
 tightvncserver -kill :1
+if [ -z "$1" ]; then
 echo "---------------------tty.js---------------------------"
 #
 sudo DEBIAN_FRONTEND=noninteractive apt-get install --force-yes -y --install-recommends nodejs npm
@@ -191,6 +192,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install --force-yes -y dos2unix
 find /var/www/html/shell -name "*" -exec dos2unix {} \;
 # 
 df -h
+fi
 echo "------------------------Clean--------------------"  
 sudo apt-get autoremove -y  
 sudo apt-get clean -y  
