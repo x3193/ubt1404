@@ -155,11 +155,11 @@ npm -v
 sudo npm update -g
 npm -v
 #update node-gyp tty.js n
-sudo chmod -R 7777 /root/.node-gyp/
-sudo npm install -g node-gyp tty.js
+sudo chmod -R 7777 /root/.node-gyp
+sudo npm install --unsafe-perm --verbose -g node-gyp tty.js
 #sudo npm install -g n
 #bower
-sudo npm install -g bower
+sudo npm install -g --unsafe-perm --verbose bower
 sudo bower install --allow-root
 #sudo bower search xterm
 #set tty.js
