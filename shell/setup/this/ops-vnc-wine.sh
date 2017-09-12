@@ -43,43 +43,16 @@ sudo apt-get update --force-yes  -y
 sudo apt-get autoremove -y  
 sudo apt-get clean -y  
 sudo apt-get autoclean -y 
-echo "---------------------tty.js---------------------------"
-#
-sudo DEBIAN_FRONTEND=noninteractive apt-get install --force-yes -y --install-recommends nodejs npm
-ln -sf /usr/bin/nodejs /usr/bin/node -f
-#
-npm install -g node-gyp n
-node -v
-n 4.4.0
-node -v
-npm -v
-npm update -g
-npm -v
-npm install -g node-gyp
-npm install -g tty.js n
-#
-npm install -g bower
-bower install --allow-root
-#sudo bower search xterm
-#
-cd /var/www/html/shell/conf/node.js/tty.js
-sudo cp -R -f tty.js .tty.js /usr/local/lib/node_modules/tty.js
-cd /usr/local/lib/node_modules/tty.js
-#openssl req -x509 -newkey rsa:2048 -keyout ./key.pem -out ./cert.pem -days 36500 -nodes
-cd /var/www/html/shell/conf/vncserver
-sudo cp -f key.pem cert.pem /usr/local/lib/node_modules/tty.js
-a2enmod proxy proxy_ajp proxy_balancer proxy_connect proxy_ftp proxy_http
-#sed -i "s/<\/proxy>.*/<\/proxy>\r\nProxyPass \/tty\.js\/ http\:\/\/localhost\:8000\/  \r\nProxyPassReverse \/tty\.js\/ http\:\/\/localhost\:8000\/\r\n/g" /etc/apache2/sites-available/000-default.conf;
-#
-cd /usr/local/lib/node_modules/node-gyp
-npm install
-ln -sf /usr/local/lib/node_modules /root/node.js -f
-sudo mkdir -vp /var/www/html/tty.js
-#sed -i "s/#setsid node/setsid node/g" /root/.vnc/xstartup
-#sudo npm update -g
-#sudo npm search xterm
-#npm config get prefix
-#
+echo "---------------------language-----------------------"  
+cd /var/www/html/shell/conf 
+sudo echo "TZ='Asia/Shanghai'; export TZ" >> ~/.profile
+sudo DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends --force-yes -y language-pack-en-base language-pack-en-base ttf-ubuntu-font-family fonts-wqy-microhei
+sudo mkdir -vp /usr/share/fonts/xpfonts
+cd /var/www/html/shell/conf 
+sudo cp -R -f /ttf/*.ttf /usr/share/fonts/xpfonts
+sudo mkfontscale
+sudo mkfontdir
+sudo fc-cache -fv
 echo "---------------------------SSH-----------------"  
 cd /var/www/html/shell/conf 
 sudo rm -rf ~/.ssh
@@ -97,7 +70,7 @@ sudo cp -R -f ~/.ssh/* ~/ssh
 cd /var/www/html/shell/conf/ssh 
 sudo cp -R -f ssh /etc/init.d 
 echo "================================================="
-echo "root:EUIfgwe7" | chpasswd
+echo "root:$ROOT_PASS" | chpasswd
 #sudo service ssh start 
 echo "================================================="
 echo "---------------------crontab-----------------------"  
@@ -114,7 +87,7 @@ echo "================================================="
 echo "--------------------VNC------------------------"  
 export LC_ALL='zh_CN.UTF-8' LANG='zh_CN.UTF-8' LANGUAGE='zh_CN:zh:en_US:en'
 #sudo DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends --force-yes -y novnc websockify openssl xorg ubuntu-gnome-desktop xfce4 xfce4-terminal icewm tightvncserver x11vnc autocutsel git 
-sudo DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends --force-yes -y novnc websockify openssl xorg icewm xfce4 xfce4-terminal xfce4-taskmanager tightvncserver x11vnc autocutsel git 
+sudo DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends --force-yes -y novnc websockify openssl xorg icewm xfce4 xfce4-terminal xfce4-taskmanager xfce4-* tightvncserver x11vnc autocutsel git 
 ##openssl req -x509 -nodes -newkey rsa:2048 -keyout /root/novnc.pem -out /root/novnc.pem -days 36500
 cd /var/www/html/shell/conf/vncserver
 sudo chmod -R 7777 /var/www/html/shell/conf
@@ -165,6 +138,46 @@ DISPLAY=:1 PASS=${ROOT_PASS:-$(pwgen -s 12 1)}
 DISPLAY=:1 echo "x3193:$PASS" | chpasswd
 DISPLAY=:1 echo "www-data:$PASS" | chpasswd
 tightvncserver -kill :1
+echo "---------------------tty.js---------------------------"
+#nodejs npm
+sudo DEBIAN_FRONTEND=noninteractive apt-get install --force-yes -y --install-recommends nodejs npm
+ln -sf /usr/bin/nodejs /usr/bin/node -f
+#node-gyp n
+#sudo npm install -g node-gyp n
+node -v
+#update npm
+#n 4.4.0
+sudo n 8.4.0
+node -v
+npm -v
+sudo npm update -g
+npm -v
+#update node-gyp tty.js n
+sudo npm install -g node-gyp
+sudo npm install -g tty.js n
+#bower
+sudo npm install -g bower
+sudo bower install --allow-root
+#sudo bower search xterm
+#set tty.js
+cd /var/www/html/shell/conf/node.js/tty.js
+sudo cp -R -f tty.js .tty.js /usr/local/lib/node_modules/tty.js
+cd /usr/local/lib/node_modules/tty.js
+#openssl req -x509 -newkey rsa:2048 -keyout ./key.pem -out ./cert.pem -days 36500 -nodes
+cd /var/www/html/shell/conf/vncserver
+sudo cp -f key.pem cert.pem /usr/local/lib/node_modules/tty.js
+a2enmod proxy proxy_ajp proxy_balancer proxy_connect proxy_ftp proxy_http
+#sed -i "s/<\/proxy>.*/<\/proxy>\r\nProxyPass \/tty\.js\/ http\:\/\/localhost\:8000\/  \r\nProxyPassReverse \/tty\.js\/ http\:\/\/localhost\:8000\/\r\n/g" /etc/apache2/sites-available/000-default.conf;
+#
+cd /usr/local/lib/node_modules/node-gyp
+sudo npm install
+ln -sf /usr/local/lib/node_modules /root/node.js -f
+sudo mkdir -vp /var/www/html/tty.js
+#sed -i "s/#setsid node/setsid node/g" /root/.vnc/xstartup
+#sudo npm update -g
+#sudo npm search xterm
+#npm config get prefix
+#
 echo "---------------------pip------------20161201---------------"
 sudo DEBIAN_FRONTEND=noninteractive apt-get install --force-yes -y --install-recommends python-pip build-essential python-dev uget
 #pip -i http://pypi.douban.com/simple install Flask

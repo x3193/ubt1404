@@ -70,7 +70,7 @@ sudo cp -f *.desktop /root/Desktop/Proxychains
 sudo cp -f proxychains.conf /etc
 echo "--------------------VNC------------------------"  
 export LC_ALL='zh_CN.UTF-8' LANG='zh_CN.UTF-8' LANGUAGE='zh_CN:zh:en_US:en'
-#sudo DEBIAN_FRONTEND=noninteractive apt-get build-dep -y --force-yes xorg icewm xfce4 xfce4-terminal xfce4-taskmanager tightvncserver gtk2-engines-murrine autocutsel git
+#sudo DEBIAN_FRONTEND=noninteractive apt-get build-dep -y --force-yes xorg lxde tightvncserver gtk2-engines-murrine autocutsel git
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes --install-recommends xorg icewm xfce4 xfce4-terminal xfce4-taskmanager tightvncserver x11vnc autocutsel git
 echo "CHROMIUM_FLAGS='--user-data-dir'" >> /etc/chromium-browser/default
 cd /root/shell/conf/vncserver
