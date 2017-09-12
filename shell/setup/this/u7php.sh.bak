@@ -322,8 +322,8 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install --force-yes -y ruby
 #enxtend .php=>.x3193
 cd /var/www/html/shell/conf/php
 cp -R -f php5.conf /etc/apache2/mods-available
-sudo a2dismod php5
-sudo a2enmod php7.0
+sudo a2dismod php7.0
+sudo a2enmod php5
 sudo service apache2 restart;
 cp -R -f index.php /var/www/html/index.x3193
 sudo rm -rf /var/www/html/index.php

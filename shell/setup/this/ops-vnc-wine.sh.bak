@@ -6,7 +6,7 @@ export DISPLAY=':1' DEBIAN_FRONTEND='noninteractive' HOME='/root' USER='root' AU
 mkdir -vp /var/www/html/shell
 chmod -R 7777 /var/www/html
 #sudo cp -R -f /root/shell/* /var/www/html/shell
-sudo cp -R -f /var/www/html/shell/loader/ops-run.sh /
+sudo cp -R -f /var/www/html/shell/loader/this/ops-run.sh /
 echo "-----------------------configure-----------------------"
 sudo dpkg --add-architecture i386
 sudo dpkg --configure -a
@@ -148,8 +148,8 @@ ln -sf /usr/bin/nodejs /usr/bin/node -f
 sudo npm install -g n
 node -v
 #update npm
-#n 4.4.0
-sudo n 8.4.0
+sudo n 4.4.0
+#sudo n 8.4.0
 node -v
 npm -v
 sudo npm update -g

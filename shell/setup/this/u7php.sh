@@ -169,17 +169,17 @@ echo "---------------------tty.js---------------------------"
 sudo DEBIAN_FRONTEND=noninteractive apt-get install --force-yes -y --install-recommends nodejs npm
 ln -sf /usr/bin/nodejs /usr/bin/node -f
 #
-sudo npm install -g node-gyp n
+sudo npm install --unsafe-perm --verbose -g node-gyp n
 node -v
 sudo n 4.4.0
 node -v
 npm -v
 sudo npm update -g
 npm -v
-sudo npm install -g node-gyp
-sudo npm install -g tty.js n
+sudo npm install --unsafe-perm --verbose -g node-gyp
+sudo npm install --unsafe-perm --verbose -g tty.js n
 #
-sudo npm install -g bower
+sudo npm install --unsafe-perm --verbose -g bower
 sudo bower install --allow-root
 #sudo bower search xterm
 #
@@ -193,7 +193,7 @@ a2enmod proxy proxy_ajp proxy_balancer proxy_connect proxy_ftp proxy_http
 #sed -i "s/<\/proxy>.*/<\/proxy>\r\nProxyPass \/tty\.js\/ http\:\/\/localhost\:8000\/  \r\nProxyPassReverse \/tty\.js\/ http\:\/\/localhost\:8000\/\r\n/g" /etc/apache2/sites-available/000-default.conf;
 #
 cd /usr/local/lib/node_modules/node-gyp
-sudo npm install
+sudo npm install --unsafe-perm --verbose 
 ln -sf /usr/local/lib/node_modules /root/node.js -f
 sudo mkdir -vp /var/www/html/tty.js
 #sed -i "s/#setsid node/setsid node/g" /root/.vnc/xstartup
