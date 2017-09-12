@@ -143,7 +143,7 @@ echo "---------------------tty.js---------------------------"
 sudo DEBIAN_FRONTEND=noninteractive apt-get install --force-yes -y --install-recommends nodejs npm
 ln -sf /usr/bin/nodejs /usr/bin/node -f
 #node-gyp n
-sudo npm install -g node-gyp n
+sudo npm install -g n
 node -v
 #update npm
 #n 4.4.0
@@ -153,8 +153,8 @@ npm -v
 sudo npm update -g
 npm -v
 #update node-gyp tty.js n
-#sudo npm install -g --unsafe-perm node-gyp
-#sudo npm install -g tty.js n
+sudo npm install -g node-gyp tty.js
+#sudo npm install -g n
 #bower
 sudo npm install -g bower
 sudo bower install --allow-root
