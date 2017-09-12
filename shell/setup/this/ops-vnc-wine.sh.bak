@@ -143,7 +143,7 @@ echo "---------------------tty.js---------------------------"
 sudo DEBIAN_FRONTEND=noninteractive apt-get install --force-yes -y --install-recommends nodejs npm
 ln -sf /usr/bin/nodejs /usr/bin/node -f
 #node-gyp n
-sudo npm install -g node-gyp n
+#sudo npm install -g node-gyp n
 node -v
 #update npm
 #n 4.4.0
