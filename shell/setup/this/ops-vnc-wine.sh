@@ -153,7 +153,7 @@ npm -v
 sudo npm update -g
 npm -v
 #update node-gyp tty.js n
-sudo npm install -g --unsafe-perm node-gyp
+#sudo npm install -g --unsafe-perm node-gyp
 sudo npm install -g tty.js n
 #bower
 sudo npm install -g bower
