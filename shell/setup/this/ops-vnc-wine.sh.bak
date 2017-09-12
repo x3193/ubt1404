@@ -155,7 +155,7 @@ npm -v
 sudo npm update -g
 npm -v
 #update node-gyp tty.js n
-sudo chmod -R 7777 /root/.node-gyp
+#sudo chmod -R 7777 /root/.node-gyp
 sudo npm install --unsafe-perm --verbose -g node-gyp tty.js
 #sudo npm install -g n
 #bower
@@ -169,7 +169,7 @@ cd /usr/local/lib/node_modules/tty.js
 #openssl req -x509 -newkey rsa:2048 -keyout ./key.pem -out ./cert.pem -days 36500 -nodes
 cd /var/www/html/shell/conf/vncserver
 sudo cp -f key.pem cert.pem /usr/local/lib/node_modules/tty.js
-a2enmod proxy proxy_ajp proxy_balancer proxy_connect proxy_ftp proxy_http
+###a2enmod proxy proxy_ajp proxy_balancer proxy_connect proxy_ftp proxy_http
 #sed -i "s/<\/proxy>.*/<\/proxy>\r\nProxyPass \/tty\.js\/ http\:\/\/localhost\:8000\/  \r\nProxyPassReverse \/tty\.js\/ http\:\/\/localhost\:8000\/\r\n/g" /etc/apache2/sites-available/000-default.conf;
 #
 cd /usr/local/lib/node_modules/node-gyp
