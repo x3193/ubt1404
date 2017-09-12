@@ -47,7 +47,7 @@ cd /var/www/html/shell/conf
 #sudo echo "export LC_ALL='zh_CN.UTF-8' LANG='zh_CN.UTF-8' LANGUAGE='zh_CN:zh:en_US:en'" >> /etc/profile
 sudo echo "TZ='Asia/Shanghai'; export TZ" >> ~/.profile
 #sudo DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends --force-yes -y language-pack-zh-hant language-pack-zh-hans language-pack-zh-hans-base language-pack-zh-hant-base language-pack-gnome-zh-hant ttf-ubuntu-font-family fonts-wqy-microhei
-sudo DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends --force-yes -y language-pack-en-base language-pack-en-base ttf-ubuntu-font-family fonts-wqy-microhei
+sudo DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends --force-yes -y language-pack-zh-hant language-pack-zh-hans language-pack-zh-hans-base language-pack-zh-hant-base language-pack-gnome-zh-hant ttf-ubuntu-font-family fonts-wqy-microhei language-pack-en-base language-pack-en-base ttf-ubuntu-font-family fonts-wqy-microhei
 sudo mkdir -vp /usr/share/fonts/xpfonts
 cd /var/www/html/shell/conf 
 sudo cp -R -f /ttf/*.ttf /usr/share/fonts/xpfonts

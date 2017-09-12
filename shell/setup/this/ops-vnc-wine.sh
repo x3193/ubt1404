@@ -149,7 +149,7 @@ sudo npm install -g n
 node -v
 #update npm
 sudo n 4.4.0
-#sudo n 8.4.0
+sudo n 8.4.0
 node -v
 npm -v
 sudo npm update -g
