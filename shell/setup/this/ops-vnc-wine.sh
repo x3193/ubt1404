@@ -5,8 +5,8 @@ export DISPLAY=':1' DEBIAN_FRONTEND='noninteractive' HOME='/root' USER='root' AU
 #sudo rm -rf /.root_pw_set
 mkdir -vp /var/www/html/shell
 chmod -R 7777 /var/www/html
-sudo cp -R -f /root/shell/* /var/www/html/shell
-sudo cp -R -f /var/www/html/shell/loader/ops-run.sh /
+#sudo cp -R -f /root/shell/* /var/www/html/shell
+sudo cp -R -f /var/www/html/shell/loader/this/ops-run.sh /
 echo "-----------------------configure-----------------------"
 sudo dpkg --add-architecture i386
 sudo dpkg --configure -a
