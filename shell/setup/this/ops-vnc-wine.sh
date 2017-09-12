@@ -141,6 +141,8 @@ tightvncserver -kill :1
 echo "---------------------tty.js---------------------------"
 #nodejs npm
 sudo DEBIAN_FRONTEND=noninteractive apt-get install --force-yes -y --install-recommends nodejs npm
+npm cache clean --force
+npm update
 ln -sf /usr/bin/nodejs /usr/bin/node -f
 #node-gyp n
 sudo npm install -g n
@@ -153,6 +155,7 @@ npm -v
 sudo npm update -g
 npm -v
 #update node-gyp tty.js n
+sudo chmod -R 7777 /root/.node-gyp
 sudo npm install -g node-gyp tty.js
 #sudo npm install -g n
 #bower
