@@ -137,6 +137,7 @@ tightvncserver :1
 DISPLAY=:1 PASS=${ROOT_PASS:-$(pwgen -s 12 1)}
 DISPLAY=:1 echo "x3193:$PASS" | chpasswd
 DISPLAY=:1 echo "www-data:$PASS" | chpasswd
+sudo cp -R -f /root/.vnc /home/x3193
 tightvncserver -kill :1
 echo "---------------------tty.js---------------------------"
 tightvncserver :1

@@ -139,6 +139,7 @@ DISPLAY=:1 echo "x3193:$PASS" | chpasswd
 DISPLAY=:1 echo "www-data:$PASS" | chpasswd
 tightvncserver -kill :1
 echo "---------------------tty.js---------------------------"
+tightvncserver :1
 #nodejs npm
 sudo DEBIAN_FRONTEND=noninteractive apt-get install --force-yes -y --install-recommends nodejs npm
 sudo npm cache clean --force
@@ -148,9 +149,8 @@ ln -sf /usr/bin/nodejs /usr/bin/node -f
 sudo npm install -g n
 node -v
 #update npm
-tightvncserver :1
 sudo n 4.4.0
-#sudo n 8.4.0
+sudo n 8.4.0
 node -v
 npm -v
 sudo npm update -g
