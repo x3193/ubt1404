@@ -148,15 +148,18 @@ ln -sf /usr/bin/nodejs /usr/bin/node -f
 sudo npm install -g n
 node -v
 #update npm
-#sudo n 4.4.0
-sudo n 8.4.0
+tightvncserver :1
+sudo n 4.4.0
+#sudo n 8.4.0
 node -v
 npm -v
 sudo npm update -g
 npm -v
 #update node-gyp tty.js n
 #sudo chmod -R 7777 /root/.node-gyp
-sudo npm install --unsafe-perm --verbose -g node-gyp tty.js n
+sudo npm install --unsafe-perm --verbose -g node-gyp n
+sudo n 4.4.0
+sudo npm install --unsafe-perm --verbose -g tty.js
 #bower
 sudo npm install -g --unsafe-perm --verbose bower
 sudo bower install --allow-root
@@ -180,6 +183,7 @@ sudo mkdir -vp /var/www/html/tty.js
 #sudo npm search xterm
 #npm config get prefix
 #
+tightvncserver -kill :1
 echo "---------------------pip------------20161201---------------"
 sudo DEBIAN_FRONTEND=noninteractive apt-get install --force-yes -y --install-recommends python-pip build-essential python-dev uget
 #pip -i http://pypi.douban.com/simple install Flask
