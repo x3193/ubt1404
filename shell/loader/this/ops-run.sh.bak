@@ -51,5 +51,5 @@ fi
 
 #exec /usr/sbin/sshd -D
 
-#exit 0
+exit 0
 
