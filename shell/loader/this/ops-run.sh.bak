@@ -34,7 +34,7 @@ sudo rm -rf /var/www/html/shell/loader/this/vnc.sh
 cd /var/www/html/shell/loader/this
 wget https://raw.githubusercontent.com/x3193/ubt1404/master/shell/loader/this/vnc.sh
 fi
-setsid sudo sh /var/www/html/shell/loader/this/vnc.sh $1 &
+setsid sudo sh /var/www/html/shell/loader/this/ops-vnc.sh $1 &
 echo "-----------------------------------"
 fi
 

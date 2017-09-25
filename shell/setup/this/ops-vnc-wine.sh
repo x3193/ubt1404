@@ -216,3 +216,5 @@ sudo apt-get autoremove -y
 sudo apt-get clean -y  
 sudo apt-get autoclean -y  
 echo "--------------------------------------------"  
+
+/ops-run.sh full

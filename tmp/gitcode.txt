@@ -1,5 +1,10 @@
 echo "--------------------"
 
+git config --global user.email "xcy6272003@126.com"
+git config --global user.name "x3193"
+
+echo "--------------------"
+
 #git clone  https://github.com/x3193/ubt1404
 git clone https://git.coding.net/x3193/ubt1404.git
 
