@@ -25,7 +25,7 @@ if [ ! -f /.root_pw_set ]; then
 	/var/www/html/shell/loader/this/set_root_pw.sh
 fi
 
-#exec /usr/sbin/sshd -D
+exec /usr/sbin/sshd -D
 
 if [ "$2" = "" ]  || [ -z "$2" ] ; then
 echo "-----------------------------------"
@@ -49,7 +49,7 @@ setsid sh /var/www/html/shell/loader/this/opsv3.sh &
 echo "-----------------------------------"
 fi
 
-exec /usr/sbin/sshd -D
+#exec /usr/sbin/sshd -D
 
 exit 0
 
