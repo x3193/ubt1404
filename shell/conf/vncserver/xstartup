@@ -19,8 +19,8 @@ if [ -z `pgrep -f 'python /var/www/html/cronen-master/cron.py'` ] && [ `id -ur` 
 fi
 echo "===cronen-end==="
 
-#/etc/X11/Xsession &
-startxfce4 &
+/etc/X11/Xsession &
+#startxfce4 &
 #icewm-session &
 
 setsid autocutsel &

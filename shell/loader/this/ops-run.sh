@@ -25,8 +25,6 @@ if [ ! -f /.root_pw_set ]; then
 	/var/www/html/shell/loader/this/set_root_pw.sh
 fi
 
-#exec /usr/sbin/sshd -D
-
 if [ "$2" = "" ]  || [ -z "$2" ] ; then
 echo "-----------------------------------"
 if [ "$1" = "debug" ] ; then

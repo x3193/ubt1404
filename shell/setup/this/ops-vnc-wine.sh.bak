@@ -87,7 +87,7 @@ echo "================================================="
 echo "--------------------VNC------------------------"  
 export LC_ALL='zh_CN.UTF-8' LANG='zh_CN.UTF-8' LANGUAGE='zh_CN:zh:en_US:en'
 #sudo DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends --force-yes -y novnc websockify openssl xorg ubuntu-gnome-desktop xfce4 xfce4-terminal icewm tightvncserver x11vnc autocutsel git 
-sudo DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends --force-yes -y novnc websockify openssl xorg icewm xfce4 xfce4-terminal xfce4-taskmanager xfce4-* tightvncserver x11vnc autocutsel git 
+sudo DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends --force-yes -y novnc websockify openssl xorg icewm xfce4 xfce4-terminal xfce4-taskmanager xfce4-* lxde tightvncserver x11vnc autocutsel git 
 ##openssl req -x509 -nodes -newkey rsa:2048 -keyout /root/novnc.pem -out /root/novnc.pem -days 36500
 cd /var/www/html/shell/conf/vncserver
 sudo chmod -R 7777 /var/www/html/shell/conf
@@ -215,28 +215,4 @@ echo "------------------------Clean--------------------"
 sudo apt-get autoremove -y  
 sudo apt-get clean -y  
 sudo apt-get autoclean -y  
-echo "------------------------update--------------------"  
-if [ "${AUTHORIZED_KEYS}" != "**None**" ]; then
-    echo "=> Found authorized keys"
-    mkdir -p /root/.ssh
-    chmod 700 /root/.ssh
-    touch /root/.ssh/authorized_keys
-    chmod 600 /root/.ssh/authorized_keys
-    IFS=$'\n'
-    arr=$(echo ${AUTHORIZED_KEYS} | tr "," "\n")
-    for x in $arr
-    do
-        x=$(echo $x |sed -e 's/^ *//' -e 's/ *$//')
-        cat /root/.ssh/authorized_keys | grep "$x" >/dev/null 2>&1
-        if [ $? -ne 0 ]; then
-            echo "=> Adding public key to /root/.ssh/authorized_keys: $x"
-            echo "$x" >> /root/.ssh/authorized_keys
-        fi
-    done
-fi
-
-if [ ! -f /.root_pw_set ]; then
-	/var/www/html/shell/loader/this/set_root_pw.sh
-fi
-
-echo "--------------------------------------------" 
+echo "-------------------------------------------------" 

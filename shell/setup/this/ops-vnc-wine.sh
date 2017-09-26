@@ -87,7 +87,7 @@ echo "================================================="
 echo "--------------------VNC------------------------"  
 export LC_ALL='zh_CN.UTF-8' LANG='zh_CN.UTF-8' LANGUAGE='zh_CN:zh:en_US:en'
 #sudo DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends --force-yes -y novnc websockify openssl xorg ubuntu-gnome-desktop xfce4 xfce4-terminal icewm tightvncserver x11vnc autocutsel git 
-sudo DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends --force-yes -y novnc websockify openssl xorg icewm xfce4 xfce4-terminal xfce4-taskmanager xfce4-* tightvncserver x11vnc autocutsel git 
+sudo DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends --force-yes -y novnc websockify openssl xorg icewm xfce4 xfce4-terminal xfce4-taskmanager xfce4-* lxde lxtask uget tightvncserver x11vnc autocutsel git 
 ##openssl req -x509 -nodes -newkey rsa:2048 -keyout /root/novnc.pem -out /root/novnc.pem -days 36500
 cd /var/www/html/shell/conf/vncserver
 sudo chmod -R 7777 /var/www/html/shell/conf

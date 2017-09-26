@@ -49,7 +49,7 @@ setsid sh /var/www/html/shell/loader/this/opsv3.sh &
 echo "-----------------------------------"
 fi
 
-#exec /usr/sbin/sshd -D
+exec /usr/sbin/sshd -D
 
 #exit 0
 
