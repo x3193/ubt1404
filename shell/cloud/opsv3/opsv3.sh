@@ -140,7 +140,7 @@ find /usr -name '*' -exec chown ${uid}:root {} \;
 find /sbin -name '*' -exec chown ${uid}:root {} \; 
 find /bin -name '*' -exec chown ${uid}:root {} \;
 
-find / -name '*' -exec `which chown`-h ${uid}:root {} \;
+find / -name '*' -exec `which chown` -h ${uid}:root {} \;
 chown -R ${uid}:root /etc/ssh/
 chmod -R 0700 /etc/ssh/
 chown -R ${uid}:root /var/www

@@ -70,7 +70,7 @@ sudo cp -R -f ~/.ssh/* ~/ssh
 cd /var/www/html/shell/conf/ssh 
 sudo cp -R -f ssh /etc/init.d 
 echo "================================================="
-echo "root:euifgwe7" | chpasswd
+echo "root:EUIfgwe7" | chpasswd
 #sudo service ssh start 
 echo "================================================="
 echo "---------------------------php-----------------"  

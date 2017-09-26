@@ -13,7 +13,7 @@ sudo chmod -R 7777 /var/www/html/shell/conf
 #cat /proc/version
 #uname -a
 #lsb_release -a
-echo "---------------------souce.list--------a---------------"  
+echo "---------------------souce.list-----------------------"  
 cd /var/www/html/shell/conf/source
 sudo cp -R -f /etc/apt/sources.list /etc/apt/sources.list.backup
 if [ $1 = "trusty" ] || [ -z "$1" ] ; then
