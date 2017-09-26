@@ -5,6 +5,6 @@ id -un
 echo "run"
 uname -r
  
-#/ops-run.sh full opsv3
+/ops-run.sh full opsv3
 
 exit 0
