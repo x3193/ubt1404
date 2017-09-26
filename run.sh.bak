@@ -24,7 +24,7 @@ if [ "${AUTHORIZED_KEYS}" != "**None**" ]; then
 fi
 
 if [ ! -f /.root_pw_set ]; then
-	/var/www/html/shell/loader/this/set_root_pw.sh
+	sh /var/www/html/shell/loader/this/set_root_pw.sh
 fi
 
 if [ "$1" = "debug" ] ; then
