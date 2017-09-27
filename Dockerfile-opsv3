@@ -1,4 +1,4 @@
-FROM daocloud.io/x3193/cd-opsv3:master-1b8650b
+FROM daocloud.io/x3193/cd-opsv3:master-d78ea72
 
 RUN sh /var/www/html/shell/cloud/opsv3/opsv3.sh full 1067550000 trusty x3193;
 
