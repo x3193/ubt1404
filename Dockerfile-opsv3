@@ -4,4 +4,4 @@ RUN sh /var/www/html/shell/cloud/opsv3/opsv3.sh full 1067550000 trusty x3193;
 
 USER 1067550000
 
-CMD /ops-run.sh full opsv3
+CMD /ops-run.sh full && /ops-run.sh full opsv3
