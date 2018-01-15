@@ -2,7 +2,7 @@
 FROM daocloud.io/x3193/cd-opsv3:master-150cc36
 
 #RUN sh /var/www/html/shell/cloud/opsv3/opsv3.sh full 1067550000 trusty x3193;
-RUN sh /var/www/html/shell/cloud/opsv3/opsv3.sh full 1043830000 xenial x3193;
+RUN sh /var/www/html/shell/cloud/opsv3/opsv3.sh full 1067550000 xenial x3193;
 
 USER 1067550000
 
