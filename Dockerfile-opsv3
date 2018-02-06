@@ -1,7 +1,7 @@
 #FROM daocloud.io/x3193/cd-opsv3:master-2149b4e
 FROM daocloud.io/x3193/cd-opsv3:master-150cc36
 
-RUN sudo DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends --force-yes -y firefox flashplugin-installer firefox-locale-zh-hans htop chromium-browser pepperflashplugin-nonfree;echo "CHROMIUM_FLAGS='--user-data-dir'" >> /etc/chromium-browser/default;sudo DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends --force-yes -y uget;
+RUN sudo DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends --force-yes -y firefox flashplugin-installer firefox-locale-zh-hans htop
 #RUN sh /var/www/html/shell/cloud/opsv3/opsv3.sh full 1067550000 trusty x3193;
 RUN sh /var/www/html/shell/cloud/opsv3/opsv3.sh full 1067550000 xenial x3193;
 
