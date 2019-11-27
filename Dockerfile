@@ -1,5 +1,5 @@
 #FROM ubuntu:xenial
-#FROM ubuntu:trusty
+FROM ubuntu:trusty
 
 #FROM index.docker.io/x3193/ubt1404:ubt1404-novnc-lamp-node.js-opsv3-2016
 #FROM x3193/ubt1404:ubuntu-trusty-vnc-wine-php-2016
